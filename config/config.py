@@ -19,11 +19,16 @@ post_media_enable = True
 # I will definitely correct this misunderstanding in the future, but for now it is so...
 # Also, please, when creating a publication in the channel,
 # do not use"BAN ID: <id>" at the end of the publication.
+
+import requests
+
 post_templates = {
 	"waiting": {
-		"attachments": {
+		"media": {
 			"type": "photo", # animation, audio, document, photo, video
 			"url": "https://i.ibb.co/PhDL9YQ/64-20241016213527.png"
+			# "type": "animation",
+			# "url": requests.get("https://nekos.best/api/v2/cry").json()["results"][0]["url"]
 		},
 		"post": """
 Player {banned} was blocked by player {by}.
@@ -32,9 +37,11 @@ Evidence is expected within 6 hours, otherwise, your account will be blocked!
 		"""
 	},
 	"confirmed": {
-		"attachments": {
+		"media": {
 			"type": "photo",
 			"url": "https://i.ibb.co/b100S7Z/64-20241016213738.png"
+			# "type": "animation",
+			# "url": requests.get("https://nekos.best/api/v2/hug").json()["results"][0]["url"]
 		},
 		"post": """
 Player {banned} was blocked by player {by}.
@@ -43,9 +50,11 @@ Confirmed!
 		"""
 	},
 	"denied": {
-		"attachments": {
+		"media": {
 			"type": "photo",
 			"url": "https://i.ibb.co/5j3vf5y/64-20241016213422.png"
+			# "type": "animation",
+			# "url": requests.get("https://nekos.best/api/v2/baka").json()["results"][0]["url"]
 		},
 		"post": """
 Player {banned} was blocked by player {by}.

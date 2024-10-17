@@ -1,48 +1,49 @@
-from main import bot, config
 from aiogram import types
+from main import bot, config
 
-# The fu***** Telegram API
-methods = {
-	"animation": bot.send_animation,
-	"audio": bot.send_audio,
-	"document": bot.send_document,
-	"photo": bot.send_photo,
-	"video": bot.send_video
+inputs = {
+	"animation": types.InputMediaAnimation,
+	"audio": types.InputMediaAudio,
+	"document": types.InputMediaDocument,
+	"photo": types.InputMediaPhoto,
+	"video": types.InputMediaVideo
 }
 
-async def __get_ready_post_params(post_config, data):
-	ban_context = "\nBAN ID: " + str(data["id"])
-	text = post_config["post"].format(banned = data["banned"],
-		by = data["by"], reason = data["reason"]) + ban_context
-	params = {"chat_id": config.channel_id, "text": text}
-
-	if config.post_media_enable:
-		attachments = post_config["attachments"]
-		params.update({attachments["type"]: attachments["url"], "caption": text})
-		params.pop("text")
-
-	return params
+def _generate_post_text(post_config: dict, data: dict) -> str:
+	return (
+		post_config["post"].format(
+			banned=data["banned"],
+			by=data["by"],
+			reason=data["reason"]
+		) + "\nBAN ID: " + str(data["id"])
+	)
 
 async def create_post(data: dict) -> int:
 	post_config = config.post_templates["waiting"]
-	method = methods[post_config["attachments"]["type"]] if config.post_media_enable else bot.send_message
-	params = await __get_ready_post_params(post_config, data)
-	response = await method(**params)
-	return response.message_id
+	text = _generate_post_text(post_config, data)
+
+	if config.post_media_enable:
+		media = post_config["media"]
+		method = bot.send_animation if media["type"] == "animation" else bot.send_media_group
+
+		if media["type"] == "animation":
+			response = await method(config.channel_id, media["url"], caption=text)
+		else:
+			media_group = [inputs[media["type"]](media=media["url"], caption=text)]
+			response = await method(config.channel_id, media_group)
+
+		return response[0].message_id if media["type"] != "animation" else response.message_id
+
+	return (await bot.send_message(config.channel_id, text)).message_id
 
 async def edit_post(data: dict):
 	post_config = config.post_templates[data["status"]]
-	params = await __get_ready_post_params(post_config, data)
-	params["message_id"] = data["tg_post_c"]
+	text = _generate_post_text(post_config, data)
 
 	if config.post_media_enable:
-		media = post_config["attachments"]
-		media_type = post_config["attachments"]["type"]
-		if media_type in methods:
-			media = types.InputMediaPhoto(media=media["url"], caption=params["caption"])  # Example for photo
-			await bot.edit_message_media(media=media, chat_id=params["chat_id"], message_id=data["tg_post_c"])
-		# Edit the caption
-		# await bot.edit_message_caption(chat_id=params["chat_id"], message_id=data["tg_post_c"], caption=params["caption"])
-	else:
-		# Edit only the text if no media is enabled
-		await bot.edit_message_text(chat_id=params["chat_id"], message_id=data["tg_post_c"], text=params["text"])
+		media = post_config["media"]
+		tmedia = inputs[media["type"]](media = media["url"], caption = text)
+		await bot.edit_message_media(tmedia, chat_id = config.channel_id, message_id = data["tg_post_c"])
+		return
+
+	await bot.edit_message_text(text, chat_id = config.channel_id, message_id = data["tg_post_c"])
