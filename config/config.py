@@ -2,7 +2,7 @@
 # (usernames without the "@" sign)
 users = [1098773489, "taskov1ch"]
 
-# TG Channel id
+# TG Channel ID
 channel_id = "@taskov1ch_group" # -1002391264384
 
 # Channel Discussion chat ID
@@ -14,14 +14,15 @@ chat_id = "@taskov1ch_chat" # -1002237373576
 # and the limit will increase to 4096 characters.
 post_media_enable = True
 
+# Parse mode
+from aiogram.enums import ParseMode
+parse_mode = ParseMode.MARKDOWN
+
 # At the end of the post there will be a text similar to "BAN ID: <id>"
 # due to the difference in the IDs issued in the channel and the discussion chat.
 # I will definitely correct this misunderstanding in the future, but for now it is so...
 # Also, please, when creating a publication in the channel,
 # do not use"BAN ID: <id>" at the end of the publication.
-
-import requests
-
 post_templates = {
 	"waiting": {
 		"media": {
@@ -31,8 +32,8 @@ post_templates = {
 			# "url": requests.get("https://nekos.best/api/v2/cry").json()["results"][0]["url"]
 		},
 		"post": """
-Player {banned} was blocked by player {by}.
-Reason: {reason}.
+Player **{banned}** was blocked by player **{by}**.
+Reason: __{reason}__.
 Evidence is expected within 6 hours, otherwise, your account will be blocked!
 		"""
 	},
@@ -44,8 +45,8 @@ Evidence is expected within 6 hours, otherwise, your account will be blocked!
 			# "url": requests.get("https://nekos.best/api/v2/hug").json()["results"][0]["url"]
 		},
 		"post": """
-Player {banned} was blocked by player {by}.
-Reason: {reason}.
+Player **{banned}** was blocked by player **{by}**.
+Reason: __{reason}__.
 Confirmed!
 		"""
 	},
@@ -57,9 +58,9 @@ Confirmed!
 			# "url": requests.get("https://nekos.best/api/v2/baka").json()["results"][0]["url"]
 		},
 		"post": """
-Player {banned} was blocked by player {by}.
-Reason: {reason}.
-Not confirmed! {banned} has been unblocked, and {by} has been blocked.
+Player **{banned}** was blocked by player **{by}**.
+Reason: __{reason}__.
+Not confirmed! **{banned}** has been unblocked, and **{by}** has been blocked.
 		"""
 	},
 }
