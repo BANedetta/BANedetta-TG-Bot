@@ -1,8 +1,8 @@
+from ..managers import posts_manager
 from .tg_router_rules import IsCorrectChat, IsPostFate
 from aiogram import Router
 from aiogram.types import Message
 from main import db, config
-from ..managers import posts_manager
 
 rt = Router()
 

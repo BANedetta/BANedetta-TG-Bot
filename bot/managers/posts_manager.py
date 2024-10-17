@@ -9,7 +9,7 @@ inputs = {
 	"video": types.InputMediaVideo
 }
 
-def _generate_post_text(post_config: dict, data: dict) -> str:
+def _get_post_text(post_config: dict, data: dict) -> str:
 	return (
 		post_config["post"].format(
 			banned=data["banned"],
@@ -20,7 +20,7 @@ def _generate_post_text(post_config: dict, data: dict) -> str:
 
 async def create_post(data: dict) -> int:
 	post_config = config.post_templates["waiting"]
-	text = _generate_post_text(post_config, data)
+	text = _get_post_text(post_config, data)
 
 	if config.post_media_enable:
 		media = post_config["media"]
@@ -38,7 +38,7 @@ async def create_post(data: dict) -> int:
 
 async def edit_post(data: dict):
 	post_config = config.post_templates[data["status"]]
-	text = _generate_post_text(post_config, data)
+	text = _get_post_text(post_config, data)
 
 	if config.post_media_enable:
 		media = post_config["media"]
