@@ -1,0 +1,5 @@
+aiogram== 3.13.1
+asyncio==3.4.3
+banedetta_db @ git+https://github.com/BANedetta/banedetta-db.git
+cryptography==43.0.1
+python-dotenv==1.0.1
