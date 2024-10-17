@@ -4,7 +4,6 @@ from aiogram.types import Message
 from main import config, db
 
 class IsCorrectChat(BaseFilter):
-
 	async def __call__(self, message: Message):
 		return (
 			message.chat.id == config.chat_id or
@@ -26,6 +25,15 @@ class IsPostFate(BaseFilter):
 			(status := statuses.get(message.text))
 		):
 			data["status"] = status
+			return {"data": data}
+
+		return False
+
+class IsPostResolved(BaseFilter):
+	async def __call__(self, message: Message):
+		data = await db.get_data_by_post_id("tg", message.message_thread_id)
+
+		if data["status"] != "waiting":
 			return {"data": data}
 
 		return False

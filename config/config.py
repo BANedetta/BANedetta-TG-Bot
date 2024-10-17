@@ -12,7 +12,7 @@ chat_id = "@taskov1ch_chat" # -1002237373576
 # it's better to decide in advance whether to send the media along with the post.
 # When this feature is disabled, media will not be attached to the post,
 # and the limit will increase to 4096 characters.
-post_media_enable = True
+post_media_enable = False
 
 # Parse mode
 from aiogram.enums import ParseMode
@@ -32,8 +32,8 @@ post_templates = {
 			# "url": requests.get("https://nekos.best/api/v2/cry").json()["results"][0]["url"]
 		},
 		"post": """
-Player **{banned}** was blocked by player **{by}**.
-Reason: __{reason}__.
+Player *{banned}* was blocked by player *{by}*.
+Reason: _{reason}_.
 Evidence is expected within 6 hours, otherwise, your account will be blocked!
 		"""
 	},
@@ -45,8 +45,8 @@ Evidence is expected within 6 hours, otherwise, your account will be blocked!
 			# "url": requests.get("https://nekos.best/api/v2/hug").json()["results"][0]["url"]
 		},
 		"post": """
-Player **{banned}** was blocked by player **{by}**.
-Reason: __{reason}__.
+Player *{banned}* was blocked by player *{by}*.
+Reason: _{reason}_.
 Confirmed!
 		"""
 	},
@@ -58,9 +58,9 @@ Confirmed!
 			# "url": requests.get("https://nekos.best/api/v2/baka").json()["results"][0]["url"]
 		},
 		"post": """
-Player **{banned}** was blocked by player **{by}**.
-Reason: __{reason}__.
-Not confirmed! **{banned}** has been unblocked, and **{by}** has been blocked.
+Player *{banned}* was blocked by player *{by}*.
+Reason: _{reason}_.
+Not confirmed! *{banned}* has been unblocked, and *{by}* has been blocked.
 		"""
 	},
 }

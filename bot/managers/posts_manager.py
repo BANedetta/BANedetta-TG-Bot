@@ -41,7 +41,7 @@ async def create_post(data: dict) -> int:
 
 		return response[0].message_id if media["type"] != "animation" else response.message_id
 
-	return (await bot.send_message(config.channel_id, text)).message_id
+	return (await bot.send_message(config.channel_id, text, parse_mode = config.parse_mode)).message_id
 
 async def edit_post(data: dict):
 	post_config = config.post_templates[data["status"]]
@@ -49,8 +49,8 @@ async def edit_post(data: dict):
 
 	if config.post_media_enable:
 		media = post_config["media"]
-		tmedia = inputs[media["type"]](media = media["url"], caption = text)
-		await bot.edit_message_media(tmedia, chat_id = config.channel_id, message_id = data["tg_post_c"])
+		media = inputs[media["type"]](media = media["url"], caption = text, parse_mode = config.parse_mode)
+		await bot.edit_message_media(media, chat_id = config.channel_id, message_id = data["tg_post_c"])
 		return
 
-	await bot.edit_message_text(text, chat_id = config.channel_id, message_id = data["tg_post_c"])
+	await bot.edit_message_text(text, chat_id = config.channel_id, message_id = data["tg_post_c"], parse_mode = config.parse_mode)

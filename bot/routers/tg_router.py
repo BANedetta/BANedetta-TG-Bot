@@ -1,10 +1,16 @@
 from ..managers import posts_manager
-from .tg_router_rules import IsCorrectChat, IsPostFate
+from .tg_router_rules import IsCorrectChat, IsPostFate, IsPostResolved
 from aiogram import Router
 from aiogram.types import Message
 from main import db, config
 
 rt = Router()
+
+@rt.message(IsCorrectChat(), IsPostFate(), IsPostResolved())
+async def handle_resolved_post(message: Message, data: dict):
+	await db.update_post_id("tg", -1, data["id"])
+	await db.update_c_post_id(-1, data["id"])
+	await posts_manager.edit_post(data)
 
 @rt.message(IsCorrectChat(), IsPostFate())
 async def update_post_fate(message: Message, data: dict):
