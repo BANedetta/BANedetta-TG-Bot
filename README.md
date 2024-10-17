@@ -1,1 +1,1 @@
-# BANedetta-TG-Bot
+# BANedetta-VK-Bot
