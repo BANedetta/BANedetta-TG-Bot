@@ -1,17 +1,17 @@
 #!/bin/bash
 
 if command -v python &> /dev/null; then
-    PYTHON_CMD="python"
+	PYTHON_CMD="python"
 elif command -v python3 &> /dev/null; then
-    PYTHON_CMD="python3"
+	PYTHON_CMD="python3"
 else
-    echo "Python is not installed. Please install Python and try again."
-    exit 1
+	echo "Python is not installed. Please install Python and try again."
+	exit 1
 fi
 
 if [ -d "venv" ]; then
-    echo "Deleting the old virtual environment..."
-    rm -rf venv
+	echo "Deleting the old virtual environment..."
+	rm -rf venv
 fi
 
 echo "Creating a new virtual environment..."
