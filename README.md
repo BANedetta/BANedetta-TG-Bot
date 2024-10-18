@@ -4,7 +4,7 @@ You must have a server with **Python 3.10** or higher installed. Also, make sure
 ## Installation 📥  
 1. Clone the repository into the desired directory on your server using the command:  
    ```  
-   git clone https://github.com/BANedetta/vkontakte-bot my_catalog  
+   git clone https://github.com/BANedetta/telegram-bot my_catalog  
    ```  
    *(replace `my_catalog` with your directory name)*. If you don't have **GIT** installed, use:  
    ```  
