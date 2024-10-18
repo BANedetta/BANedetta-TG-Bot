@@ -26,10 +26,8 @@ parse_mode = ParseMode.MARKDOWN
 post_templates = {
 	"waiting": {
 		"media": {
-			"type": "photo", # animation, audio, document, photo, video
-			"url": "https://i.ibb.co/PhDL9YQ/64-20241016213527.png"
-			# "type": "animation",
-			# "url": requests.get("https://nekos.best/api/v2/cry").json()["results"][0]["url"]
+			"type": "animation", # animation, audio, document, photo, video
+			"url": "https://i.ibb.co/xHVZrK4/fsU8dbK.gif"
 		},
 		"post": """
 Player *{banned}* was blocked by player *{by}*.
@@ -39,10 +37,8 @@ Evidence is expected within 6 hours, otherwise, your account will be blocked!
 	},
 	"confirmed": {
 		"media": {
-			"type": "photo",
-			"url": "https://i.ibb.co/b100S7Z/64-20241016213738.png"
-			# "type": "animation",
-			# "url": requests.get("https://nekos.best/api/v2/hug").json()["results"][0]["url"]
+			"type": "animation",
+			"url": "https://i.ibb.co/Chhmz7H/brooh-Chel.gif"
 		},
 		"post": """
 Player *{banned}* was blocked by player *{by}*.
@@ -52,10 +48,8 @@ Confirmed!
 	},
 	"denied": {
 		"media": {
-			"type": "photo",
-			"url": "https://i.ibb.co/5j3vf5y/64-20241016213422.png"
-			# "type": "animation",
-			# "url": requests.get("https://nekos.best/api/v2/baka").json()["results"][0]["url"]
+			"type": "animation",
+			"url": "https://i.ibb.co/gDyZY24/cvyvvqv-Ywvddw8.gif"
 		},
 		"post": """
 Player *{banned}* was blocked by player *{by}*.

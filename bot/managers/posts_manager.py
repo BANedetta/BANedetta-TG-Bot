@@ -24,13 +24,6 @@ async def create_post(data: dict) -> int:
 
 	if config.post_media_enable:
 		media = post_config["media"]
-
-		# method = bot.send_animation if media["type"] == "animation" else bot.send_media_group
-		# response = (await method(config.channel_id, media["url"], caption = text)
-		# 	if media["type"] == "animation" else await bot.send_media_group(config.channel_id,
-		# 		[inputs.get(media["type"])(media = media["url"], caption = text)]))
-		# return response[0].message_id if media["type"] != "animation" else response.message_id
-
 		method = bot.send_animation if media["type"] == "animation" else bot.send_media_group
 
 		if media["type"] == "animation":
