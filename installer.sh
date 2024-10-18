@@ -14,6 +14,7 @@ if [ -d "venv" ]; then
 	rm -rf venv
 fi
 
+
 echo "Creating a new virtual environment..."
 $PYTHON_CMD -m venv venv
 
