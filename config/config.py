@@ -12,7 +12,7 @@ chat_id = "@taskov1ch_chat" # -1002237373576
 # it's better to decide in advance whether to send the media along with the post.
 # When this feature is disabled, media will not be attached to the post,
 # and the limit will increase to 4096 characters.
-post_media_enable = False
+post_media_enable = True
 
 # Parse mode
 from aiogram.enums import ParseMode
@@ -27,7 +27,7 @@ post_templates = {
 	"waiting": {
 		"media": {
 			"type": "animation", # animation, audio, document, photo, video
-			"url": "https://i.ibb.co/xHVZrK4/fsU8dbK.gif"
+			"url": "https://otvet.imgsmail.ru/download/301633282_1980a2cb691b64f49deba346e2ff0b7b_800.gif"
 		},
 		"post": """
 Player *{banned}* was blocked by player *{by}*.
