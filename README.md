@@ -24,7 +24,7 @@ You must have a server with **Python 3.10** or higher installed. Also, make sure
    ```  
    *(on **Windows** run **installer.cmd**)* and wait for the installation to complete.  
 
-4. Configure **config.py** in the **config** directory for your game server.  
+4. Configure **config.py** in the **config** directory for your game server. Go to the channel settings and add a chat for discussion, then add the ID _(or username)_ of the chat and channel to **config.py**.
 
 5. Create a **.env** file and fill it out based on the **.env_example** file.  
 
@@ -32,4 +32,4 @@ You must have a server with **Python 3.10** or higher installed. Also, make sure
 
 
 ### Important ⚠️  
-This bot is useless without a plugin on the game server, so set everything up there first.  
+This bot is useless without a plugin on the game server, so set everything up there first.
